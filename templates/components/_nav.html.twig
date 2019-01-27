@@ -2,10 +2,24 @@
 <nav class="menu-res hidden-lg hidden-md ">
     <div class="menu-res-inner">
         <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="business.html">BUSINESS</a></li>
-            <li><a href="computing.html"> COMPUTING</a></li>
-            <li><a href="tech.html">TECH</a></li>
+            <li>
+                <a href="{{ url('front_home') }}">Accueil </a>
+            </li>
+            <li>
+                <a href="{{ url('front_categorie', {
+                    'categorie' : 'business'
+                }) }}">Business</a>
+            </li>
+            <li>
+                <a href="{{ url('front_categorie', {
+                    'categorie' : 'computing'
+                }) }}">Computing</a>
+            </li>
+            <li>
+                <a href="{{ url('front_categorie', {
+                    'categorie' : 'tech'
+                }) }}">Tech </a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -15,8 +29,8 @@
         <header class="header">
             <div class="row">
                 <div class="col-md-3 col-sm-4 col-xs-12">
-                    <a href="#" class="logo">
-                        <img alt="Logo" src="assets/images/logo.png" />
+                    <a href="{{ url('front_home') }}" class="logo">
+                        <img alt="Logo" src="{{ asset('assets/images/logo.png') }}" />
                     </a>
                 </div>
             </div>
@@ -29,16 +43,22 @@
             </div>
             <ul class="hidden-sm hidden-xs">
                 <li>
-                    <a href="index.html">Accueil </a>
+                    <a href="{{ url('front_home') }}">Accueil </a>
                 </li>
                 <li>
-                    <a href="business.html">Business</a>
+                    <a href="{{ url('front_categorie', {
+                        'categorie' : 'business'
+                    }) }}">Business</a>
                 </li>
                 <li>
-                    <a href="computing.html">Computing</a>
+                    <a href="{{ url('front_categorie', {
+                        'categorie' : 'computing'
+                    }) }}">Computing</a>
                 </li>
                 <li>
-                    <a href="tech.html">Tech </a>
+                    <a href="{{ url('front_categorie', {
+                        'categorie' : 'tech'
+                    }) }}">Tech </a>
                 </li>
             </ul>
             <div class="search-icon">

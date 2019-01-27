@@ -59,4 +59,16 @@ class Router
         }
 
     }
+
+    /**
+     * Génération d'une URL à partir du nom de la route
+     * @param string $routeName
+     * @param array $params
+     * @return string
+     * @throws \Exception
+     */
+    public function generateUrl(string $routeName, array $params = array()): string
+    {
+        return $this->router->generate($routeName, $params);
+    }
 }

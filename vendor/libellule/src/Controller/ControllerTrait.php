@@ -3,6 +3,7 @@
 namespace Libellule\Controller;
 
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 trait ControllerTrait
@@ -29,4 +30,31 @@ trait ControllerTrait
         return $response;
 
     }
+
+    /**
+     * Génération d'une URL depuis le Controller
+     * @param string $route
+     * @param array $parameters
+     * @return string
+     */
+    protected function generateUrl(string $route, array $parameters = array()): string
+    {
+        return $this->container->get('router')->generateUrl($route, $parameters);
+    }
+
+    /**
+     * Redirection vers une nouvelle page
+     * @param string $url
+     * @return RedirectResponse
+     */
+    protected function redirect(string $url): RedirectResponse
+    {
+        return new RedirectResponse($url);
+    }
+
+    protected function redirectToRoute(string $route, array $parameters = array()): RedirectResponse
+    {
+        return $this->redirect($this->generateUrl($route, $parameters));
+    }
+
 }

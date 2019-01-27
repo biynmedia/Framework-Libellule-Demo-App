@@ -19,8 +19,15 @@ class FrontController extends Controller
         # dump($this->getContainer()->get('request'));
 
         # return new Response("<h1>JE SUIS SUR LA PAGE ACCUEIL</h1>");
-//        return $this->render('front/index.html.twig');
         return $this->render('front/index.html.twig');
+
+        # return $this->redirectToRoute('front_categorie', [
+        #    'categorie' => 'sport'
+        # ]);
+
+        #dump($this->generateUrl('front_home'));
+
+        # return $this->redirect('https://google.fr');
     }
 
     /**
@@ -30,7 +37,10 @@ class FrontController extends Controller
      */
     public function categorie($categorie)
     {
-        return new Response("<h1>JE SUIS SUR LA PAGE CATEGORIE : $categorie</h1>");
+        # return new Response("<h1>JE SUIS SUR LA PAGE CATEGORIE : $categorie</h1>");
+        return $this->render('front/categorie.html.twig', [
+            'categorie' => $categorie
+        ]);
     }
 
     /**
@@ -42,6 +52,7 @@ class FrontController extends Controller
      */
     public function article($categorie, $id, $slug)
     {
-        return new Response("<h1>JE SUIS SUR LA PAGE ARTICLE : $categorie, $slug, $id</h1>");
+        # return new Response("<h1>JE SUIS SUR LA PAGE ARTICLE : $categorie, $slug, $id</h1>");
+        return $this->render('front/article.html.twig');
     }
 }
