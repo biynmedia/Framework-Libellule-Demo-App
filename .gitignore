@@ -48,5 +48,6 @@
 # Embedded web-server pid file
 /.web-server-pid
 
+/public/output/*
 /vendor/*
 !libellule/

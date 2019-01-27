@@ -3,12 +3,20 @@
 namespace Libellule\Core;
 
 
-use App\Controller\FrontController;
+use Libellule\Router\Router;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class Core
 {
+
+    private $router, $request;
+
+    public function __construct(array $l_routes)
+    {
+        $this->router = new Router($l_routes);
+    }
+
     /**
      * Récupère la Request du client et retourne la bonne réponse.
      * @param Request $request
@@ -18,46 +26,15 @@ class Core
     {
         # Découverte de VarDumper
         # dump($request);
-        # dump($request->query->count());
 
-        # Si aucun paramètre redirection sur la page 404
-        # FIXME : Solution temporaire
-        if(!$request->query->count()) {
-            return new Response("<h1>ERREUR 404 !</h1>");
-        }
+        # On passe à l'objet le request
+        $this->request = $request;
 
-        # Récupération des Paramètres avec $_GET
-        # $controller = $request['controller'];
-        # $action     = $request['action'];
-
-        # Récupération des Paramètres avec Request
-        $controller = $request->get('controller');
-        $action = $request->get('action');
-
-        if ($controller == "front" && $action == "index") {
-            # 1. Affichage d'une réponse
-            # echo "<h1>JE SUIS SUR LA PAGE ACCUEIL</h1>";
-
-            # 2. Retour d'une réponse
-            #return new Response("<h1>JE SUIS SUR LA PAGE ACCUEIL</h1>");
-
-            # 3. Execution du Controller correspondant
-            $frontController = new FrontController();
-            return $frontController->home();
-        }
-
-        if ($controller == "front" && $action == "categorie") {
-            # echo "<h1>JE SUIS SUR LA PAGE CATEGORIE</h1>";
-            #return new Response("<h1>JE SUIS SUR LA PAGE CATEGORIE</h1>");
-            $frontController = new FrontController();
-            return $frontController->categorie();
-        }
-
-        if ($controller == "front" && $action == "article") {
-            # echo "<h1>JE SUIS SUR LA PAGE ARTICLE</h1>";
-            #return new Response("<h1>JE SUIS SUR LA PAGE ARTICLE</h1>");
-            $frontController = new FrontController();
-            return $frontController->article();
-        }
+        /**
+         * On appel la fonction matcher pour rechercher une correspondance
+         * entre l'URL de la requète et le tableau de routes. Puis on
+         * retourne la reponse correspondante.
+         */
+        return $this->router->matcher($request);
     }
 }

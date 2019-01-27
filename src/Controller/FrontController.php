@@ -19,19 +19,23 @@ class FrontController
 
     /**
      * Affiche les Articles d'une Catégorie
+     * @param $categorie
      * @return Response
      */
-    public function categorie()
+    public function categorie($categorie)
     {
-        return new Response("<h1>JE SUIS SUR LA PAGE CATEGORIE</h1>");
+        return new Response("<h1>JE SUIS SUR LA PAGE CATEGORIE : $categorie</h1>");
     }
 
     /**
      * Affiche un Article
+     * @param $categorie
+     * @param $slug
+     * @param $id
      * @return Response
      */
-    public function article()
+    public function article($categorie, $id, $slug)
     {
-        return new Response("<h1>JE SUIS SUR LA PAGE ARTICLE</h1>");
+        return new Response("<h1>JE SUIS SUR LA PAGE ARTICLE : $categorie, $slug, $id</h1>");
     }
 }
