@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 
+use Libellule\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class FrontController
+class FrontController extends Controller
 {
 
     /**
@@ -14,7 +15,12 @@ class FrontController
      */
     public function home()
     {
-        return new Response("<h1>JE SUIS SUR LA PAGE ACCUEIL</h1>");
+        # Récupération de request via le controller.
+        # dump($this->getContainer()->get('request'));
+
+        # return new Response("<h1>JE SUIS SUR LA PAGE ACCUEIL</h1>");
+//        return $this->render('front/index.html.twig');
+        return $this->render('front/index.html.twig');
     }
 
     /**
